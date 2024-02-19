@@ -1,14 +1,14 @@
 import { createCard, deleteCard, cardLike } from './card.js';
 import { initialCards } from './cards.js';
-import { openModal, closeModal } from './modal.js';
+import { openModal, closeModal  } from './modal.js';
 
 export const template = document.querySelector('#card-template').content;
 const placesList = document.querySelector('.places__list');
-const modalWindowProfile = document.querySelector('.popup_type_edit'); // окно с профилем
-const modalWindowNewCard = document.querySelector('.popup_type_new-card'); // окно создания новой карточки
+export const modalWindowProfile = document.querySelector('.popup_type_edit'); // окно с профилем
+export const modalWindowNewCard = document.querySelector('.popup_type_new-card'); // окно создания новой карточки
 export const modalWindowImage = document.querySelector('.popup_type_image'); //окно картинки
 const modalOpenProfileButton = document.querySelector('.profile__edit-button'); //кнопка открытия профиля
-const buttonClosePopupList = document.querySelectorAll('.popup__close'); // кнопка закртыия
+export const buttonClosePopupList = document.querySelectorAll('.popup__close'); // кнопка закртыия
 const modalOpenNewCardButton = document.querySelector('.profile__add-button'); //кнопка открытия окна новой карточкиm
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__description');
@@ -18,6 +18,8 @@ const jobInput = document.querySelector('.popup__input_type_description');
 const formNewCard = document.querySelector('form[name = "new-place"]');
 const nameCardInput = document.querySelector('.popup__input_type_card-name');
 const linkInput = document.querySelector('.popup__input_type_url');
+
+
 
 function showCard(card) {
   placesList.prepend(card);
@@ -46,46 +48,6 @@ modalOpenProfileButton.addEventListener('click', () => {
 // открытие окна добавления
 modalOpenNewCardButton.addEventListener('click', () => {
   openModal(modalWindowNewCard);
-});
-
-//закрытие вне области
-buttonClosePopupList.forEach((button, idx) => {
-  button.addEventListener('click', () => {
-    if (idx === 0) {
-      closeModal(modalWindowProfile);
-    }
-    if (idx === 1) {
-      closeModal(modalWindowNewCard);
-    }
-    closeModal(modalWindowImage);
-  });
-});
-
-modalWindowProfile.addEventListener('click', (e) => {
-  if (!e.target.closest('.popup__content')) {
-    closeModal(modalWindowProfile);
-  }
-});
-
-modalWindowNewCard.addEventListener('click', (e) => {
-  if (!e.target.closest('.popup__content')) {
-    closeModal(modalWindowNewCard);
-  }
-});
-
-modalWindowImage.addEventListener('click', (e) => {
-  if (!e.target.closest('.popup__content')) {
-    closeModal(modalWindowImage);
-  }
-});
-
-//закрытие на esc
-document.addEventListener('keydown', (e) => {
-  if (e.code === 'Escape') {
-    closeModal(modalWindowProfile);
-    closeModal(modalWindowNewCard);
-    closeModal(modalWindowImage);
-  }
 });
 
 // форма инфо о себе
