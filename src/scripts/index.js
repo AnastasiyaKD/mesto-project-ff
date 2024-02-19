@@ -1,3 +1,4 @@
+import '../pages/index.css';
 import { createCard, deleteCard, cardLike } from './card.js';
 import { initialCards } from './cards.js';
 import { openModal, closeModal } from './modal.js';
@@ -23,7 +24,7 @@ const linkInput = document.querySelector('.popup__input_type_url');
 
 function showCard(card) {
   placesList.prepend(card);
-}
+};
 
 initialCards.forEach(function (element) {
   const card = createCard(element, deleteCard, cardLike, createPopupImage);
@@ -36,7 +37,7 @@ export function createPopupImage(element) {
   card.querySelector('.popup__image').src = element.link;
   card.querySelector('.popup__image').alt = element.alt;
   return card;
-}
+};
 
 // открытие с профилем
 modalOpenProfileButton.addEventListener('click', () => {
@@ -56,7 +57,7 @@ function handleFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closeModal(modalWindowProfile);
-}
+};
 
 formElement.addEventListener('submit', handleFormSubmit);
 
@@ -72,6 +73,6 @@ function addFormCard(evt) {
   showCard(newCard);
   formNewCard.reset();
   closeModal(modalWindowNewCard);
-}
+};
 
 formNewCard.addEventListener('submit', addFormCard);

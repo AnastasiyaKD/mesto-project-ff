@@ -21,12 +21,12 @@ export function createCard(element, deleteCard, cardLike, createPopupImage) {
   });
 
   return card;
-}
+};
 
 export function deleteCard(card) {
   card.remove();
-}
+};
 
 export function cardLike(card) {
   card.classList.toggle('card__like-button_is-active');
-}
+};
