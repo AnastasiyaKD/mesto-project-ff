@@ -1,6 +1,6 @@
 import { createCard, deleteCard, cardLike } from './card.js';
 import { initialCards } from './cards.js';
-import { openModal, closeModal  } from './modal.js';
+import { openModal, closeModal } from './modal.js';
 
 export const template = document.querySelector('#card-template').content;
 const placesList = document.querySelector('.places__list');

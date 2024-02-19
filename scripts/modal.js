@@ -9,6 +9,9 @@ export function openModal(modal) {
 export function closeModal(modal) {
   modal.classList.remove('popup_is-opened');
 }
+
+
+window.onload =  () => {
 //закрытие вне области
 buttonClosePopupList.forEach((button, idx) => {
     button.addEventListener('click', () => {
@@ -41,7 +44,7 @@ buttonClosePopupList.forEach((button, idx) => {
     }
   });
 
-
+}
 //закрытие на esc
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Escape') {
