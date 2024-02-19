@@ -1,20 +1,12 @@
-// @todo: Темплейт карточки
+import { createCard, deleteCard, cardLike } from './card.js';
+import { initialCards } from './cards.js';
+import { openModal, closeModal } from './modal.js';
 
-// @todo: DOM узлы
-
-// @todo: Функция создания карточки
-
-// @todo: Функция удаления карточки
-
-// @todo: Вывести карточки на страницу
-import {createCard, createCard, deleteCard, cardLike } from './cards.js';
-
-//модальные окна
-const template = document.querySelector('#card-template').content;
+export const template = document.querySelector('#card-template').content;
 const placesList = document.querySelector('.places__list');
 const modalWindowProfile = document.querySelector('.popup_type_edit'); // окно с профилем
 const modalWindowNewCard = document.querySelector('.popup_type_new-card'); // окно создания новой карточки
-const modalWindowImage = document.querySelector('.popup_type_image'); //окно картинки
+export const modalWindowImage = document.querySelector('.popup_type_image'); //окно картинки
 const modalOpenProfileButton = document.querySelector('.profile__edit-button'); //кнопка открытия профиля
 const buttonClosePopupList = document.querySelectorAll('.popup__close'); // кнопка закртыия
 const modalOpenNewCardButton = document.querySelector('.profile__add-button'); //кнопка открытия окна новой карточкиm
@@ -27,9 +19,6 @@ const formNewCard = document.querySelector('form[name = "new-place"]');
 const nameCardInput = document.querySelector('.popup__input_type_card-name');
 const linkInput = document.querySelector('.popup__input_type_url');
 
-
- 
-
 function showCard(card) {
   placesList.prepend(card);
 }
@@ -39,31 +28,13 @@ initialCards.forEach(function (element) {
   showCard(card);
 });
 
-
-
-
-
-
-
-function createPopupImage(element) {
+export function createPopupImage(element) {
   const card = document.querySelector('.popup_type_image');
   card.querySelector('.popup__caption').textContent = element.name;
   card.querySelector('.popup__image').src = element.link;
   card.querySelector('.popup__image').alt = element.alt;
   return card;
 }
-
-//функция открытия окон
-function openModal(modal) {
-  modal.classList.add('popup_is-animated', 'popup_is-opened');
-}
-
-//функция закрытия на крестик
-function closeModal(modal) {
-  modal.classList.remove('popup_is-opened');
-}
-
-
 
 // открытие с профилем
 modalOpenProfileButton.addEventListener('click', () => {
@@ -77,6 +48,7 @@ modalOpenNewCardButton.addEventListener('click', () => {
   openModal(modalWindowNewCard);
 });
 
+//закрытие вне области
 buttonClosePopupList.forEach((button, idx) => {
   button.addEventListener('click', () => {
     if (idx === 0) {
@@ -88,7 +60,7 @@ buttonClosePopupList.forEach((button, idx) => {
     closeModal(modalWindowImage);
   });
 });
-// закрытие вне области
+
 modalWindowProfile.addEventListener('click', (e) => {
   if (!e.target.closest('.popup__content')) {
     closeModal(modalWindowProfile);
@@ -107,6 +79,7 @@ modalWindowImage.addEventListener('click', (e) => {
   }
 });
 
+//закрытие на esc
 document.addEventListener('keydown', (e) => {
   if (e.code === 'Escape') {
     closeModal(modalWindowProfile);
@@ -116,7 +89,6 @@ document.addEventListener('keydown', (e) => {
 });
 
 // форма инфо о себе
-
 function handleFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -127,8 +99,6 @@ function handleFormSubmit(evt) {
 formElement.addEventListener('submit', handleFormSubmit);
 
 //форма добавления карточек
-
-
 function addFormCard(evt) {
   evt.preventDefault();
   const newObj = {
@@ -143,4 +113,3 @@ function addFormCard(evt) {
 }
 
 formNewCard.addEventListener('submit', addFormCard);
-
