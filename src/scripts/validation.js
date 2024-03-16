@@ -1,12 +1,3 @@
-export const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button-inactive",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "form__input-error_active",
-};
-
 const showInputError = (
   formElement,
   inputElement,
@@ -87,7 +78,6 @@ export const enableValidation = (validationConfig) => {
     setEventListeners(formElement, validationConfig);
   });
 };
-enableValidation(validationConfig);
 
 /**функция очистки валидации
  * @param {form} formElement
@@ -107,8 +97,12 @@ export function clearValidation(formElement, validationConfig) {
   errorList.forEach((errorElement) => {
     errorElement.textContent = "";
   });
+}
+
+export function blockButton(formElement, validationConfig) {
   const buttonElement = formElement.querySelector(
     validationConfig.submitButtonSelector
   );
   buttonElement.disabled = true;
+  buttonElement.classList.add(validationConfig.inactiveButtonClass);
 }
